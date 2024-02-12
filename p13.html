@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <style>
+        .required-field::after {
+            content: "*";
+            color: red;
+            margin-left:2px
+        }
+
+        th{
+            text-align: left;
+        }
+
+        .halfTable{
+            width: 50%;
+        }
+
+        .relFull{
+            width: 95%;
+        }
+
+        .lname{
+            margin: 0 0 0 10px;
+        }
+
+        .card {
+            max-width: 33rem;
+            width: 100%;
+        }
+ 
+        .star {
+            font-size: 7vh;
+            color: grey;
+        }
+
+        .checked {
+            color: orange;
+        }
+
+        #mail{
+            width: 100%; 
+        }
+
+        .param{
+            width: 15%;
+        }
+
+        .dark{
+            background-color: whitesmoke;
+        }
+
+        .rad{
+            width: 100%;
+        }
+
+        #comments{
+            width: 100%; 
+        }
+    </style>
+    <script>
+        // The Rating Variable
+        var rating = "1"
+
+        // Access the Rating Stars
+        let stars = document.getElementsByClassName("star");
+
+        // Funtion to Update Rating
+        function rate(n) 
+        {
+            // Clear the Previous Selection 
+            for (let i=0;i<5;i++) 
+                stars[i].className = "star"
+
+            // Show the New Selection     
+            for (let i=0;i<n;i++) 
+                stars[i].className = "star "+"checked"
+
+            rating = `${n}`
+        }
+
+        function fixRating() 
+        {
+            document.getElementById("rating").value = rating
+        }
+    </script>
+</head>
+<body>
+    <form id="surveyForm" method="POST" action="mailto: vipul.dibrani@gmail.com" enctype="multipart/form-data">
+        <div>
+            <table class="halfTable">
+               <tr>
+                    <th colspan="2" class="required-field">Name</th>
+               </tr>
+               <tr>
+                    <td><input type="text" name="fname" id="fname" class="relFull" required></td>
+                    <td><input type="text" name="lname" id="lname" class="relFull lname" required></td>
+               </tr> 
+               <tr>
+                    <td><label for="fname">First</label></td>
+                    <td><label for="lname" class="lname">Last</label></td>
+               </tr>
+            </table>
+        </div>
+        <br>
+        <div>
+            <table class="halfTable">
+               <tr>
+                    <th colspan="2" class="required-field">Email</th>
+               </tr> 
+               <tr>
+                    <td colspan="2"><input type="email" name="email" id="mail" required></td>
+               </tr>
+            </table>
+        </div> 
+        <br>
+        <input hidden="true" type="text" id="rating" name="rating">
+        <span class="required-field"><b>Your Experience</b></span>        
+        <div class="card">
+            <span onclick="rate(1)" class="star checked">★</span>
+            <span onclick="rate(2)" class="star">★</span>
+            <span onclick="rate(3)" class="star">★</span>
+            <span onclick="rate(4)" class="star">★</span> 
+            <span onclick="rate(5)" class="star">★</span>
+        </div>
+        <span>Overall, how would you like to rate your experience wih us?</form> <br>
+        <br>
+        <div>
+            <table class="rad">
+                <tr>
+                    <th colspan="6" class="required-field">How satisfied are you with</th>
+                </tr>
+                <tr>
+                    <td class="param"></td>
+                    <td>Very Unsatisfied</td>
+                    <td>Unsatisfied</td>
+                    <td>Neutral</td>
+                    <td>Satisfied</td>
+                    <td>Very Satisfied</td>
+                </tr>
+                <tr class="dark">
+                    <td class="param">Purchase</td>
+                    <td><input type="radio" name="purchase" id="purchase1" value="1"></td>
+                    <td><input type="radio" name="purchase" id="purchase2" value="2"></td>
+                    <td><input type="radio" name="purchase" id="purchase3" value="3" required></td>
+                    <td><input type="radio" name="purchase" id="purchase4" value="4"></td>
+                    <td><input type="radio" name="purchase" id="purchase5" value="5"></td>
+                </tr>
+                <tr>
+                    <td class="param">Service</td>
+                    <td><input type="radio" name="service" id="service1" value="1"</td>
+                    <td><input type="radio" name="service" id="service2" value="2"></td>
+                    <td><input type="radio" name="service" id="service3" value="3" required></td>
+                    <td><input type="radio" name="service" id="service4" value="4"></td>
+                    <td><input type="radio" name="service" id="service5" value="5"></td>
+                </tr>
+                <tr class="dark">
+                    <td class="param">Company Overall</td>
+                    <td><input type="radio" name="overall" id="overall1" value="1"></td>
+                    <td><input type="radio" name="overall" id="overall2" value="2"></td>
+                    <td><input type="radio" name="overall" id="overall3" value="3" required></td>
+                    <td><input type="radio" name="overall" id="overall4" value="4"></td>
+                    <td><input type="radio" name="overall" id="overall5" value="5"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div>
+            <table class="rad">
+                <tr>
+                    <th colspan="6" class="required-field">How likely are you to</th>
+                </tr>
+                <tr>
+                    <td class="param"></td>
+                    <td>Very Unlikely</td>
+                    <td>Unlikely</td>
+                    <td>Neutral</td>
+                    <td>Likely</td>
+                    <td>Very Likely</td>
+                </tr>
+                <tr class="dark">
+                    <td class="param">Buy from us again</td>
+                    <td><input type="radio" name="buy" id="buy1" value="1"></td>
+                    <td><input type="radio" name="buy" id="buy2" value="2"></td>
+                    <td><input type="radio" name="buy" id="buy3" value="3" required></td>
+                    <td><input type="radio" name="buy" id="buy4" value="4"></td>
+                    <td><input type="radio" name="buy" id="buy5" value="5"></td>
+                </tr>
+                <tr>
+                    <td class="param">Recommend our products to others</td>
+                    <td><input type="radio" name="product" id="product1" value="1"></td>
+                    <td><input type="radio" name="product" id="product2" value="2"></td>
+                    <td><input type="radio" name="product" id="product3" value="3" required></td>
+                    <td><input type="radio" name="product" id="product4" value="4"></td>
+                    <td><input type="radio" name="product" id="product5" value="5"></td>
+                </tr>
+                <tr class="dark">
+                    <td class="param">Recommend our company to others</td>
+                    <td><input type="radio" name="company" id="company1" value="1"></td>
+                    <td><input type="radio" name="company" id="company2" value="2"></td>
+                    <td><input type="radio" name="company" id="company3" value="3" required></td>
+                    <td><input type="radio" name="company" id="company4" value="4"></td>
+                    <td><input type="radio" name="company" id="company5" value="5"></td>
+                </tr>
+            </table>
+        </div>
+        <br> 
+        <div>
+            <b>Additional Comments or Suggestions</b>
+            <textarea id="comments" rows="5">
+            </textarea>
+        </div>
+        <input type="submit" value="Submit" onclick="fixRating()">
+    </form>
+</body>
+</html>
